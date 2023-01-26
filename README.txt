@@ -1,1 +1,0 @@
-This is the git for the Elect App

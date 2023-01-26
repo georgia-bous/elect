@@ -19,15 +19,16 @@ class _SignInState extends State<SignIn> {
     return Scaffold(
         body: SingleChildScrollView(
             child: Container(
+                height: MediaQuery.of(context).size.height,
                 padding: EdgeInsets.fromLTRB(
-                    25 * fem, 120 * femm, 20 * fem, 10 * femm),
+                    25 * fem, 120 * femm, 25 * fem, 10 * femm),
                 color: Color(0xff1c1b1f),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Container(
                         margin: EdgeInsets.fromLTRB(
-                            140 * fem, 30 * femm, 52 * fem, 50 * femm),
+                            140 * fem, 25 * femm, 52 * fem, 35 * femm),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
@@ -54,7 +55,7 @@ class _SignInState extends State<SignIn> {
                         Center(
                           child: Container(
                             margin: EdgeInsets.fromLTRB(
-                                20 * fem, 70 * femm, 20 * fem, 40 * femm),
+                                20 * fem, 70 * femm, 20 * fem, 10 * femm),
                             child: Text(
                               'Let\'s create your account!',
                               textAlign: TextAlign.center,
@@ -71,8 +72,10 @@ class _SignInState extends State<SignIn> {
                           height: 75 * fem,
                           margin: EdgeInsets.fromLTRB(
                               30 * fem, 0 * femm, 10 * fem, 30 * femm),
-                          padding: EdgeInsets.fromLTRB(
-                              20 * fem, 1 * femm, 20 * fem, 3 * femm),
+                          padding: EdgeInsets.all(
+                              15.0) /*fromLTRB(
+                              20 * fem, 1 * femm, 20 * fem, 3 * femm)*/
+                          ,
                           decoration: BoxDecoration(
                             color: Color(0xff25232a),
                             borderRadius: BorderRadius.circular(50 * fem),
@@ -101,8 +104,10 @@ class _SignInState extends State<SignIn> {
                               30 * fem, 0 * femm, 10 * fem, 30 * femm),
                           width: double.infinity,
                           height: 75 * fem,
-                          padding: EdgeInsets.fromLTRB(
-                              20 * fem, 1 * femm, 20 * fem, 3 * femm),
+                          padding: EdgeInsets.all(
+                              15.0) /*fromLTRB(
+                              20 * fem, 1 * femm, 20 * fem, 3 * femm)*/
+                          ,
                           decoration: BoxDecoration(
                             color: Color(0xff25232a),
                             borderRadius: BorderRadius.circular(50 * fem),
@@ -128,11 +133,13 @@ class _SignInState extends State<SignIn> {
                         ),
                         Container(
                           margin: EdgeInsets.fromLTRB(
-                              30 * fem, 0 * femm, 10 * fem, 30 * femm),
+                              30 * fem, 0 * femm, 10 * fem, 20 * femm),
                           width: double.infinity,
                           height: 75 * fem,
-                          padding: EdgeInsets.fromLTRB(
-                              20 * fem, 1 * femm, 20 * fem, 3 * femm),
+                          padding: EdgeInsets.all(
+                              15.0) /*.fromLTRB(
+                              20 * fem, 1 * femm, 20 * fem, 3 * femm)*/
+                          ,
                           decoration: BoxDecoration(
                             color: Color(0xff25232a),
                             borderRadius: BorderRadius.circular(50 * fem),

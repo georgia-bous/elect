@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '/log_inScreen.dart';
+import '/profileScreen.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -164,7 +165,11 @@ class _SignInState extends State<SignIn> {
                           margin: EdgeInsets.fromLTRB(
                               133 * fem, 0 * femm, 133 * fem, 10 * femm),
                           child: TextButton(
-                            onPressed: () {},
+                            onPressed: () => {
+                              Navigator.pop(context),
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => Profile()))
+                            },
                             child: Container(
                               height: 80 * fem,
                               decoration: BoxDecoration(

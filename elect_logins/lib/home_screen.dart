@@ -13,14 +13,15 @@ class Homescreen extends StatelessWidget {
     double ffem = fem * 0.97;
     return Scaffold(
         body: Container(
-      padding: EdgeInsets.fromLTRB(25 * fem, 120 * femm, 20 * fem, 10 * femm),
+      padding: EdgeInsets.fromLTRB(25 * fem, 120 * femm, 25 * fem, 10 * femm),
       color: Color(0xff1c1b1f),
       child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: <
           Widget>[
         Container(
             margin:
-                EdgeInsets.fromLTRB(140 * fem, 30 * femm, 52 * fem, 50 * femm),
+                EdgeInsets.fromLTRB(52 * fem, 30 * femm, 52 * fem, 50 * femm),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(

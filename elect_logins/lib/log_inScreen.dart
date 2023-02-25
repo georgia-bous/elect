@@ -28,9 +28,10 @@ class _LogInState extends State<LogIn> {
                   children: <Widget>[
                     Container(
                         margin: EdgeInsets.fromLTRB(
-                            140 * fem, 30 * femm, 52 * fem, 180 * femm),
+                            52 * fem, 30 * femm, 52 * fem, 180 * femm),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Container(
                               width: 113.88 * fem,
@@ -56,11 +57,9 @@ class _LogInState extends State<LogIn> {
                             width: double.infinity,
                             height: 75 * fem,
                             margin: EdgeInsets.fromLTRB(
-                                30 * fem, 0 * femm, 10 * fem, 30 * femm),
-                            padding: EdgeInsets.all(
-                                15.0) /*fromLTRB(
-                                20 * fem, 1 * femm, 20 * fem, 3 * femm)*/
-                            ,
+                                30 * fem, 10 * femm, 10 * fem, 30 * femm),
+                            padding: EdgeInsets.only(
+                                left: 20, top: 10, right: 20, bottom: 10),
                             decoration: BoxDecoration(
                               color: Color(0xff25232a),
                               borderRadius: BorderRadius.circular(50 * fem),
@@ -89,10 +88,8 @@ class _LogInState extends State<LogIn> {
                                 30 * fem, 0 * femm, 10 * fem, 20 * femm),
                             //width: double.infinity,
                             height: 75 * fem,
-                            padding: EdgeInsets.all(
-                                15.0) /*.fromLTRB(
-                                20 * fem, 1 * femm, 20 * fem, 3 * femm)*/
-                            ,
+                            padding: EdgeInsets.only(
+                                left: 20, top: 10, right: 20, bottom: 10),
                             decoration: BoxDecoration(
                               color: Color(0xff25232a),
                               borderRadius: BorderRadius.circular(50 * fem),

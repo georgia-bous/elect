@@ -29,8 +29,9 @@ class _SignInState extends State<SignIn> {
                   children: <Widget>[
                     Container(
                         margin: EdgeInsets.fromLTRB(
-                            140 * fem, 25 * femm, 52 * fem, 35 * femm),
+                            52 * fem, 25 * femm, 52 * fem, 25 * femm),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Container(
@@ -69,46 +70,45 @@ class _SignInState extends State<SignIn> {
                           ),
                         ),
                         Container(
-                          width: double.infinity,
-                          height: 75 * fem,
-                          margin: EdgeInsets.fromLTRB(
-                              30 * fem, 0 * femm, 10 * fem, 30 * femm),
-                          padding: EdgeInsets.all(
-                              15.0) /*fromLTRB(
-                              20 * fem, 1 * femm, 20 * fem, 3 * femm)*/
-                          ,
-                          decoration: BoxDecoration(
-                            color: Color(0xff25232a),
-                            borderRadius: BorderRadius.circular(50 * fem),
-                          ),
-                          child: TextField(
-                              decoration: InputDecoration(
-                                hintText: 'Enter your username',
-                                hintStyle: TextStyle(
-                                  color: Colors.white54,
-                                  fontFamily: 'Rubik',
-                                  fontSize: 20 * ffem,
-                                  fontWeight: FontWeight.w400,
-                                  letterSpacing: 0.5 * fem,
-                                ),
-                                border: InputBorder.none,
-                              ),
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: 'Rubik',
-                                  fontSize: 24 * ffem,
-                                  fontWeight: FontWeight.normal,
-                                  letterSpacing: 0.5 * fem)),
-                        ),
+                            width: double.infinity,
+                            height: 75 * fem,
+                            margin: EdgeInsets.fromLTRB(
+                                30 * fem, 10 * femm, 10 * fem, 30 * femm),
+                            padding: EdgeInsets.only(
+                                left: 20, top: 10, right: 20, bottom: 10),
+                            //  15.0)
+
+                            decoration: BoxDecoration(
+                              color: Color(0xff25232a),
+                              borderRadius: BorderRadius.circular(50 * fem),
+                            ),
+                            child: Center(
+                              child: TextField(
+                                  decoration: InputDecoration(
+                                    hintText: 'Enter your username',
+                                    hintStyle: TextStyle(
+                                      color: Colors.white54,
+                                      fontFamily: 'Rubik',
+                                      fontSize: 20 * ffem,
+                                      fontWeight: FontWeight.w400,
+                                      letterSpacing: 0.5 * fem,
+                                    ),
+                                    border: InputBorder.none,
+                                  ),
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'Rubik',
+                                      fontSize: 24 * ffem,
+                                      fontWeight: FontWeight.normal,
+                                      letterSpacing: 0.5 * fem)),
+                            )),
                         Container(
                           margin: EdgeInsets.fromLTRB(
                               30 * fem, 0 * femm, 10 * fem, 30 * femm),
                           width: double.infinity,
                           height: 75 * fem,
-                          padding: EdgeInsets.all(
-                              15.0) /*fromLTRB(
-                              20 * fem, 1 * femm, 20 * fem, 3 * femm)*/
-                          ,
+                          padding: EdgeInsets.only(
+                              left: 20, top: 10, right: 20, bottom: 10),
                           decoration: BoxDecoration(
                             color: Color(0xff25232a),
                             borderRadius: BorderRadius.circular(50 * fem),
@@ -137,10 +137,8 @@ class _SignInState extends State<SignIn> {
                               30 * fem, 0 * femm, 10 * fem, 20 * femm),
                           width: double.infinity,
                           height: 75 * fem,
-                          padding: EdgeInsets.all(
-                              15.0) /*.fromLTRB(
-                              20 * fem, 1 * femm, 20 * fem, 3 * femm)*/
-                          ,
+                          padding: EdgeInsets.only(
+                              left: 20, top: 10, right: 20, bottom: 10),
                           decoration: BoxDecoration(
                             color: Color(0xff25232a),
                             borderRadius: BorderRadius.circular(50 * fem),

@@ -6,30 +6,14 @@ import 'profileScreen.dart';
 import 'postsFeed.dart';
 import 'settings.dart';
 
-class uploadPost extends StatefulWidget {
-  uploadPost({super.key});
+class resolvePost extends StatefulWidget {
+  resolvePost({super.key});
 
   @override
-  State<uploadPost> createState() => _uploadPostState();
+  State<resolvePost> createState() => _resolvePostState();
 }
 
-class _uploadPostState extends State<uploadPost> {
-  
-  InputDecoration optionsDecoration({required String hintText}) {
-    return InputDecoration(
-      filled: true,
-      fillColor: const Color.fromARGB(255, 28, 27, 31),
-      contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-      hintText: 'Option ' + hintText,
-      hintStyle: TextStyle(fontSize: 16, color: Color.fromARGB(255, 157, 157, 157)),
-      enabledBorder: OutlineInputBorder(
-        borderSide: BorderSide(width: 1, color: Color.fromARGB(255, 157, 157, 157)),
-      ),
-      focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(width: 2.5, color: Color.fromARGB(255, 130, 46, 156)),
-      ),
-    );
-  }
+class _resolvePostState extends State<resolvePost> {
 
   final ButtonStyle uploadButton = ElevatedButton.styleFrom(       //creating a style for the upload button
     minimumSize: const Size(0, 50),
@@ -57,21 +41,21 @@ class _uploadPostState extends State<uploadPost> {
   }
 
   @override
-  Widget build(BuildContext context) { 
+  Widget build(BuildContext context) {  
     double femm = MediaQuery.of(context).size.height; 
     return Scaffold(
       appBar: AppBar(
         title: Center(
-            child: GestureDetector(
-              onTap: () {
-                Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => Feed()));
-              },
-              child: Image.asset('electlogo2.png',
-              width: double.infinity,
-              height: femm / 20,),
-            )
-          ),
+          child: GestureDetector(
+            onTap: () {
+              Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => Feed()));
+            },
+            child: Image.asset('electlogo2.png',
+            width: double.infinity,
+            height: femm / 20,),
+          )
+        ),
         backgroundColor: const Color.fromARGB(255, 28, 27, 31),
         elevation: 4.0,
         leading: IconButton(
@@ -87,7 +71,7 @@ class _uploadPostState extends State<uploadPost> {
             onPressed: () {
               Navigator.of(context)
               .push(MaterialPageRoute(builder: (context) => Settings()));
-            },
+            }
           ),
         ],
       ),
@@ -100,12 +84,22 @@ class _uploadPostState extends State<uploadPost> {
               alignment: AlignmentDirectional.bottomCenter,
               children: [
 
-                 _image != null ? Image.network(_image.path, 
-                                                height: double.infinity, 
-                                                width: double.infinity, 
-                                                fit: BoxFit.cover,) : Container(), 
+                // Resolve post image 
+                _image != null ? Image.network(_image.path, 
+                                              height: double.infinity, 
+                                              width: double.infinity, 
+                                              fit: BoxFit.cover,) : Container(), 
 
-                // Here is camera icon
+                // Image of dilemma post
+                Container(
+                  alignment: Alignment(0.91, -0.85),
+                  child: CircleAvatar(
+                    radius: 45.0,
+                    backgroundImage: AssetImage('dilemmaUpload.jpg'),
+                  )
+                ),
+
+                // Camera icon
                 Container(
                   alignment: Alignment.center, 
                   child: IconButton(
@@ -117,84 +111,75 @@ class _uploadPostState extends State<uploadPost> {
                 
                 ),
 
+                // Local file upload icon
+                Container(
+                  alignment: Alignment.topLeft,                
+                  child: IconButton(
+                      onPressed: () {
+                        getImage(false);
+                      }, 
+                      icon: Icon(Icons.add_photo_alternate, size: 32, color: Color.fromARGB(255, 28, 27, 31))
+                    ),
+                ),
+                
+                // Dilemma question
                 Container(                 
                   width: double.infinity,                 
                   padding: const EdgeInsets.all(20.0),
                   decoration: BoxDecoration(
                     color: Color.fromARGB(255, 24, 23, 23).withOpacity(0.4),
                   ),
-                  child: const TextField(                                       
+                  child: const Text(
+                    "I'm bored.. What should I do today?",                                       
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 20,
-                      fontWeight: FontWeight.w500,
-                    ),
-                    maxLines: null,
-                    decoration: InputDecoration(
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(width: 2.5, color: Color.fromARGB(255, 130, 46, 156)),
-                      ),
-                      hintText: 'What is your dilemma?', // Set the hintText
-                      hintStyle: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
-                      ),
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ), 
-
-                // Here is local file upload 
-                Container(
-                  margin: const EdgeInsets.all(10.0),
-                  alignment: Alignment.topLeft,                
-                  child: Row(
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          getImage(false);
-                        }, 
-                        icon: Icon(Icons.add_photo_alternate, size: 32, color: Color.fromARGB(255, 28, 27, 31))
-                      ),
-                    ]
-                  )
-                ),
               ]             
             ),
-          ),      
+          ), 
+
+          // Here is the option-uploadButton box 
           Container(              
             decoration: const BoxDecoration(
               color:  const Color.fromARGB(255, 28, 27, 31),
             ),
             child: Center(
               child: Column(
-                children: [ 
+                children: [
+
+                  // Option 1 
                   Container(
-                    margin: EdgeInsets.only(left: 30, right: 30, top:30, bottom: 25),
-                    child: TextField(
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        fontSize: 16, 
-                        color: Color.fromARGB(255, 157, 157, 157)
-                      ),
-                      maxLines: null,
-                      decoration: optionsDecoration(hintText: '1'),
-                    ),
+                    width: double.infinity,   
+                    height: 45,            
+                    padding: const EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),  
+                    margin: EdgeInsets.only(left: 30, right: 30, top: 30, bottom: 25),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50), 
+                      color: Color.fromARGB(255, 130, 46, 156), 
+                    ), 
+                    child: 
+                      Align(alignment: Alignment.centerLeft, child: Text('Go to the beach!',style: TextStyle(color: Colors.white))),
                   ),
 
+                  // Option 2
                   Container(
-                    margin: EdgeInsets.only(left: 30, right: 30, top: 0, bottom: 30),
-                    child: TextField(
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        fontSize: 16, 
-                        color: Color.fromARGB(255, 157, 157, 157)
-                      ),
-                      maxLines: null,
-                      decoration: optionsDecoration(hintText: '2'),
-                    ),
+                  width: double.infinity, 
+                  height: 45,            
+                  padding: const EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
+                  margin: EdgeInsets.only(left: 30, right: 30, top:0, bottom: 30),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50), 
+                    color: Color.fromARGB(255, 18, 18, 19),
+                  ), 
+                  child: 
+                    Align(alignment: Alignment.centerLeft, child: Text('Netflix is always the answer', style: TextStyle(color: Color.fromARGB(255, 130, 46, 156)))),
                   ),
 
+                  // Upload button
                   Container(
                     margin: EdgeInsets.only(left: 30, right: 30, top: 6, bottom: 30),
                     child: ElevatedButton (

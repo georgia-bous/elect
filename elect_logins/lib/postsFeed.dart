@@ -1,12 +1,7 @@
-// ignore_for_file: avoid_init_to_null
-
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
-
-void main() {
-  runApp(const MyApp());
-}
+import 'profileScreen.dart';
+import 'settings.dart';
 
 class MyCustomScrollBehavior extends MaterialScrollBehavior { // this exists so we can scroll posts using the mouse
   @override
@@ -16,51 +11,47 @@ class MyCustomScrollBehavior extends MaterialScrollBehavior { // this exists so 
   };
 }
 
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class Feed extends StatefulWidget {
+  Feed({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
+  State<Feed> createState() => _FeedState();
 }
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key, required this.title});
-  final String title;
-
+class _FeedState extends State<Feed> {
   @override
   Widget build(BuildContext context) { 
+    double femm = MediaQuery.of(context).size.height; 
     final PageController controller = PageController();
     return Scaffold(
       appBar: AppBar(
-        title: SizedBox(
-          height: 40,
-          child: Center(
-            child: Image.asset('electlogo2.png'),
-            ),
+        title: Center(
+          child: GestureDetector(
+            onTap: () {
+              Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => Feed()));
+            },
+            child: Image.asset('electlogo2.png',
+            width: double.infinity,
+            height: femm / 20,),
+          )
         ),
         backgroundColor: const Color(0xff1c1b1f),
         elevation: 4.0,
         leading: IconButton(
             icon: const Icon(Icons.account_circle),
             onPressed: () {
-              // handle account action
+              Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => Profile()));
             },
           ),
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.settings),
-            onPressed: () {
-              // handle options action
-            },
+           onPressed: () {
+              Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => Settings()));
+            }
           ),
         ],
       ),
@@ -69,10 +60,10 @@ class MyHomePage extends StatelessWidget {
         scrollBehavior: MyCustomScrollBehavior().copyWith(scrollbars: false),
         controller: controller,
         children:  const [
-          ElectResolutionPost(key: ValueKey(1), avatar: 'user_picture_1.png', dilemma: 'What would you choose?', option1: 'Run', option2: 'Gun', postImage: 'post_image_1.png', username: 'Yvonne', winningOption: 1, comments: 42, likes: 397),
-          ElectPost(key: ValueKey(1), avatar: 'user_picture_1.png', dilemma: 'What would you choose?', option1: 'Run', option2: 'Gun', postImage: 'post_image_1.png', username: 'Yvonne'),
-          ElectPost(key: ValueKey(2), avatar: 'user_picture_1.png', dilemma: 'What is your choice?', option1: 'Fight', option2: 'Flight', postImage: 'post_image_1.png', username: 'Takis'),
-          ElectPost(key: ValueKey(3), avatar: 'user_picture_1.png', dilemma: 'What will it be?', option1: 'Smash', option2: 'Gas', postImage: 'post_image_1.png', username: 'Vrasidas'),       
+          ElectResolutionPost(key: ValueKey(1), avatar: 'user1.jpg', dilemma: 'Found this little one', option1: 'Adopt the kitten!', option2: 'Let is go', postImage: 'postResolved.jpg', username: 'Yvonne', winningOption: 1, comments: 42, likes: 397),
+          ElectPost(key: ValueKey(1), avatar: 'user2.jpg', dilemma: 'New Nike shoes just dropped', option1: 'Cop', option2: 'Drop', postImage: 'post1.jpg', username: 'Mike'),
+          ElectPost(key: ValueKey(2), avatar: 'user3.jpg', dilemma: 'Where to next?', option1: 'Morocco', option2: 'Egypt', postImage: 'post2.jpg', username: 'Ken'),
+          ElectPost(key: ValueKey(3), avatar: 'user4.jpg', dilemma: 'Main course?', option1: 'Meat', option2: 'Fish', postImage: 'post3.jpg', username: 'Mila'),       
         ]
       ),
     );
@@ -196,7 +187,7 @@ class _ElectPostState extends State<ElectPost>
           ),      
           Container(              
             decoration: const BoxDecoration(
-              color:  Color.fromARGB(255, 14, 13, 15),
+              color: Color.fromARGB(255, 28, 27, 31),
             ),
             child: Center(
               
@@ -365,7 +356,7 @@ class _ElectResolutionPostState extends State<ElectResolutionPost>
           ),      
           Container(              
             decoration: const BoxDecoration(
-              color:  Color.fromARGB(255, 14, 13, 15),
+              color:   Color.fromARGB(255, 28, 27, 31)
             ),
             child: Center(
               

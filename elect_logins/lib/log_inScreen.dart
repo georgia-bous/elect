@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '/sign_inScreen.dart';
+import 'postsFeed.dart';
 
 class LogIn extends StatefulWidget {
   const LogIn({Key? key}) : super(key: key);
@@ -115,9 +116,14 @@ class _LogInState extends State<LogIn> {
                       margin: EdgeInsets.fromLTRB(
                           133 * fem, 0 * femm, 133 * fem, 8 * femm),
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () => {
+                              Navigator.pop(context),
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => Feed()))
+                            },
                         child: Container(
-                          height: 80 * fem,
+                          height: 60 * fem,
+                          width: 200 * fem,
                           decoration: BoxDecoration(
                             color: Color(0xff6750a4),
                             borderRadius: BorderRadius.circular(100 * fem),

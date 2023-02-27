@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import '/followersScreen.dart';
-import 'uploadPost.dart';
+import '/uploadPost.dart';
+import '/resolvePost.dart';
+import 'postsFeed.dart';
+import 'settings.dart';
 
-Color _containerColor = Color(0xff25232a);
+Color _containerColorUpload = Color(0xff25232a);
+Color _containerColorResolve = Color(0xff25232a);
+Color _containerColorFollowers = Color(0xff25232a);
+
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -26,21 +32,25 @@ class _ProfileState extends State<Profile> {
         backgroundColor: Color(0xff1c1b1f),
         appBar: AppBar(
           title: Center(
-              child: Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/electlogo2.png'),
-              ),
-            ),
-            width: double.infinity,
-            height: femm / 20,
-          )),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => Feed()));
+              },
+              child: Image.asset('electlogo2.png',
+              width: double.infinity,
+              height: femm / 20,),
+            )
+          ),
           backgroundColor: Color(0xff1c1b1f),
           elevation: 4.0,
           actions: <Widget>[
             IconButton(
               icon: Icon(Icons.settings),
-              onPressed: () {},
+              onPressed: () {
+              Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => Settings()));
+            }
             ),
           ],
         ),
@@ -60,13 +70,13 @@ class _ProfileState extends State<Profile> {
                     shape: BoxShape.circle,
                     image: DecorationImage(
                       fit: BoxFit.contain,
-                      image: AssetImage('assets/profile1.png'),
+                      image: AssetImage('assets/avatar.jpg'),
                     ),
                   ),
                 )),
                 Container(
                   child: Text(
-                    'Billy Joel',
+                    'Jolene',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: femm / 30,
@@ -119,7 +129,17 @@ class _ProfileState extends State<Profile> {
                     child: Column(
                       children: [
                         GestureDetector(
-                          onTap: () {
+                          onTapDown: (_) {
+                            // Change the color of the container when the user taps down
+                            setState(() {
+                              _containerColorFollowers = Color.fromARGB(255, 66, 62, 74);
+                            });
+                          },
+                          onTapUp: (_) {
+                            // Change the color of the container back when the user lifts their finger
+                            setState(() {
+                              _containerColorFollowers = Color(0xff25232a);
+                            });
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => Followers()));
                           },
@@ -165,19 +185,33 @@ class _ProfileState extends State<Profile> {
               height: femm / 6,
               margin: EdgeInsets.only(right: 10, left: 10),
               child: Row(children: [
-                Container(
+                GestureDetector(
+                  onTapDown: (_) {
+                    // Change the color of the container when the user taps down
+                    setState(() {
+                      _containerColorResolve = Color.fromARGB(255, 66, 62, 74);
+                    });
+                  },
+                  onTapUp: (_) {
+                    // Change the color of the container back when the user lifts their finger
+                    setState(() {
+                      _containerColorResolve = Color(0xff25232a);
+                    });
+                    Navigator.pop(context);
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => resolvePost()));
+                  },
+                  child: Container(
                     width: MediaQuery.of(context).size.width / 2 - 20.0,
-                    color: Color(0xff25232a),
+                    color: _containerColorResolve,
                     padding: EdgeInsets.only(top: femm / 70),
                     child: Column(
                       children: [
                         Container(
                           height: femm / 11,
-                          //width: femm / 11,
-                          //margin: EdgeInsets.only(top: femm / 150),
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                              image: AssetImage('assets/dilemma1.jpg'),
+                              image: AssetImage('assets/dilemmaUpload.jpg'),
                             ),
                           ),
                         ),
@@ -193,18 +227,19 @@ class _ProfileState extends State<Profile> {
                           ),
                         ),
                       ],
-                    )),
+                    ))
+                  ),
                   GestureDetector(
                     onTapDown: (_) {
                       // Change the color of the container when the user taps down
                       setState(() {
-                        _containerColor = Color.fromARGB(255, 66, 62, 74);
+                        _containerColorUpload = Color.fromARGB(255, 66, 62, 74);
                       });
                     },
                     onTapUp: (_) {
                       // Change the color of the container back when the user lifts their finger
                       setState(() {
-                        _containerColor = Color(0xff25232a);
+                        _containerColorUpload = Color(0xff25232a);
                       });
                       Navigator.pop(context);
                       Navigator.of(context).push(MaterialPageRoute(
@@ -213,7 +248,7 @@ class _ProfileState extends State<Profile> {
                     child: Container(
                       width: MediaQuery.of(context).size.width / 2 - 20.0,
                       margin: EdgeInsets.only(left: 20),
-                      color: _containerColor,
+                      color: _containerColorUpload,
                       padding: EdgeInsets.only(top: femm / 70),
                       
                       child: Column(
@@ -265,72 +300,6 @@ class _ProfileState extends State<Profile> {
                 physics: AlwaysScrollableScrollPhysics(),
                 controller: controller,
                 children: <Widget>[
-                  /*Container(
-                      width: fem / 3,
-                      margin: EdgeInsets.only(left: femm / 50),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Color(0xff25232a),
-                      ),
-                      child: Column(
-                        children: [
-                          Container(
-                              height: femm / 7,
-                              width: fem / 5,
-                              margin: EdgeInsets.only(
-                                  top: femm / 60,
-                                  right: fem / 40,
-                                  bottom: femm / 90,
-                                  left: fem / 40),
-                              /*
-                            decoration: BoxDecoration(
-                              //shape: BoxShape.circle,
-                              borderRadius: BorderRadius.circular(20),
-                              image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: AssetImage('assets/snow.jpg'),
-                              ),
-                            ),*/
-                              child: Stack(children: [
-                                Image.asset('assets/profile1.png'),
-                                Positioned(
-                                    bottom: femm / 14,
-                                    left: fem / 13,
-                                    child: ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(fem / 20),
-                                        child: Image.asset("assets/snow.jpg",
-                                            height: femm / 10, width: fem / 8)))
-                              ])),
-                          Container(
-                              height: femm / 15,
-                              width: fem / 3,
-                              padding: EdgeInsets.only(left: fem / 10),
-                              child: Row(
-                                children: [
-                                  Container(
-                                    height: femm / 18,
-                                    width: fem / 15,
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        image:
-                                            AssetImage('assets/gemlogo-1.png'),
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                      margin: EdgeInsets.only(left: fem / 60),
-                                      child: Text(
-                                        "99",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: femm / 40,
-                                        ),
-                                      ))
-                                ],
-                              ))
-                        ],
-                      )),*/
                   Container(
                       width: fem / 3,
                       margin: EdgeInsets.only(left: femm / 50),
@@ -353,7 +322,7 @@ class _ProfileState extends State<Profile> {
                               borderRadius: BorderRadius.circular(20),
                               image: DecorationImage(
                                 fit: BoxFit.cover,
-                                image: AssetImage('assets/snow.jpg'),
+                                image: AssetImage('assets/prevPost1.jpg'),
                               ),
                             ),
                           ),
@@ -408,7 +377,7 @@ class _ProfileState extends State<Profile> {
                               borderRadius: BorderRadius.circular(20),
                               image: DecorationImage(
                                 fit: BoxFit.cover,
-                                image: AssetImage('assets/snow.jpg'),
+                                image: AssetImage('assets/prevPost2.jpg'),
                               ),
                             ),
                           ),
@@ -463,7 +432,7 @@ class _ProfileState extends State<Profile> {
                               borderRadius: BorderRadius.circular(20),
                               image: DecorationImage(
                                 fit: BoxFit.cover,
-                                image: AssetImage('assets/snow.jpg'),
+                                image: AssetImage('assets/prevPost3.jpg'),
                               ),
                             ),
                           ),
@@ -518,7 +487,7 @@ class _ProfileState extends State<Profile> {
                               borderRadius: BorderRadius.circular(20),
                               image: DecorationImage(
                                 fit: BoxFit.cover,
-                                image: AssetImage('assets/snow.jpg'),
+                                image: AssetImage('assets/prevPost4.jpg'),
                               ),
                             ),
                           ),

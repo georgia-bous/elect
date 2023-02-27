@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
+import 'settings.dart';
 
 class Followers extends StatefulWidget {
   const Followers({Key? key}) : super(key: key);
@@ -19,40 +20,52 @@ class _FollowersState extends State<Followers> {
     final PageController controller = PageController();
 
     return Scaffold(
+      backgroundColor: Color(0xff1c1b1f),
+      appBar: AppBar(
+        title: Center(
+            child: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/electlogo2.png'),
+            ),
+          ),
+          width: double.infinity,
+          height: femm / 20,
+        )),
         backgroundColor: Color(0xff1c1b1f),
-        appBar: AppBar(
-          title: Center(
-              child: Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/electlogo2.png'),
-              ),
+        elevation: 4.0,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.settings),
+            onPressed: () {
+              Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => Settings()));
+            }
+          ),
+        ],
+      ),
+      body: Container(
+        margin: EdgeInsets.only(left: 10, right: 10),
+        child: TextField(
+          style: TextStyle(color: Colors.white),
+          decoration: InputDecoration(
+            hintText: 'Search',
+            hintStyle: TextStyle(fontSize: 16, color: Color.fromARGB(255, 157, 157, 157)),
+            filled: true,
+            fillColor: Color(0xff25212e),
+            prefixIcon: Icon(Icons.search, color: Color.fromARGB(255, 157, 157, 157),),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
             ),
-            width: double.infinity,
-            height: femm / 20,
-          )),
-          backgroundColor: Color(0xff1c1b1f),
-          elevation: 4.0,
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.settings),
-              onPressed: () {},
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(width: 1, color: Color.fromARGB(255, 157, 157, 157)),
             ),
-          ],
-        ),
-        body: Container(
-            margin: EdgeInsets.only(left: 10, right: 10),
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: 'Search',
-                filled: true,
-                fillColor: Color(0xff25212e),
-                prefixIcon: Icon(Icons.search),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  //borderSide: BorderSide(color: Colors.white),
-                ),
-              ),
-            )));
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(width: 2.5, color: Color.fromARGB(255, 130, 46, 156)),
+            ),
+          ),
+        )
+      )
+    );
   }
 }

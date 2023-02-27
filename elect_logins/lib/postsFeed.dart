@@ -60,7 +60,7 @@ class _FeedState extends State<Feed> {
         scrollBehavior: MyCustomScrollBehavior().copyWith(scrollbars: false),
         controller: controller,
         children:  const [
-          ElectResolutionPost(key: ValueKey(1), avatar: 'user1.jpg', dilemma: 'Found this little one', option1: 'Adopt the kitten!', option2: 'Let is go', postImage: 'postResolved.jpg', username: 'Yvonne', winningOption: 1, comments: 42, likes: 397),
+          ElectResolutionPost(key: ValueKey(1), avatar: 'user1.jpg', dilemma: 'Found this little one', option1: 'Adopt the kitten!', option2: 'Let is go', postImage: 'postResolved.jpg', username: 'Yvonne', winningOption: 1),
           ElectPost(key: ValueKey(1), avatar: 'user2.jpg', dilemma: 'New Nike shoes just dropped', option1: 'Cop', option2: 'Drop', postImage: 'post1.jpg', username: 'Mike'),
           ElectPost(key: ValueKey(2), avatar: 'user3.jpg', dilemma: 'Where to next?', option1: 'Morocco', option2: 'Egypt', postImage: 'post2.jpg', username: 'Ken'),
           ElectPost(key: ValueKey(3), avatar: 'user4.jpg', dilemma: 'Main course?', option1: 'Meat', option2: 'Fish', postImage: 'post3.jpg', username: 'Mila'),       
@@ -228,8 +228,7 @@ class _ElectPostState extends State<ElectPost>
 
 class ElectResolutionPost extends StatefulWidget {
   const ElectResolutionPost({Key? key, required this.option1, required this.option2, required this.dilemma,
-                   required this.postImage, required this.username, required this.avatar, required this.winningOption,
-                   required this.likes, required this.comments}) : super(key: key);
+                   required this.postImage, required this.username, required this.avatar, required this.winningOption,}) : super(key: key);
 
   final String option1;
   final String option2;
@@ -238,8 +237,6 @@ class ElectResolutionPost extends StatefulWidget {
   final String username;
   final String avatar;
   final int winningOption;
-  final int likes;
-  final int comments;
 
   @override
   State<ElectResolutionPost> createState() => _ElectResolutionPostState();

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '/sign_inScreen.dart';
-import '/log_inScreen.dart';
+import 'sign_inScreen.dart';
+import 'log_inScreen.dart';
 //import 'package:google_fonts/google_fonts.dart';
 
 class Homescreen extends StatelessWidget {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '/sign_inScreen.dart';
+import 'sign_inScreen.dart';
 import 'postsFeed.dart';
 
 class LogIn extends StatefulWidget {

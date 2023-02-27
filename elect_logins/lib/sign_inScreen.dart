@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '/log_inScreen.dart';
-import '/postsFeed.dart';
+import 'log_inScreen.dart';
+import 'postsFeed.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);

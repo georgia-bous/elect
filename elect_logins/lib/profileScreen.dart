@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
-import '/followersScreen.dart';
-import '/uploadPost.dart';
-import '/resolvePost.dart';
+import 'followersScreen.dart';
+import 'uploadPost.dart';
+import 'resolvePost.dart';
 import 'postsFeed.dart';
 import 'settings.dart';
 

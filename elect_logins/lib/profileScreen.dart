@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import '/followersScreen.dart';
+import 'uploadPost.dart';
+
+Color _containerColor = Color(0xff25232a);
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -191,38 +194,56 @@ class _ProfileState extends State<Profile> {
                         ),
                       ],
                     )),
-                Container(
-                    width: MediaQuery.of(context).size.width / 2 - 20.0,
-                    margin: EdgeInsets.only(left: 20),
-                    color: Color(0xff25232a),
-                    padding: EdgeInsets.only(top: femm / 70),
-                    child: Column(
-                      children: [
-                        Container(
-                          height: femm / 11,
-                          //width: 50,
-                          //margin: EdgeInsets.only(top: 30),
-                          //width: 15.0,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage('assets/Upload.png'),
+                  GestureDetector(
+                    onTapDown: (_) {
+                      // Change the color of the container when the user taps down
+                      setState(() {
+                        _containerColor = Color.fromARGB(255, 66, 62, 74);
+                      });
+                    },
+                    onTapUp: (_) {
+                      // Change the color of the container back when the user lifts their finger
+                      setState(() {
+                        _containerColor = Color(0xff25232a);
+                      });
+                      Navigator.pop(context);
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => uploadPost()));
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width / 2 - 20.0,
+                      margin: EdgeInsets.only(left: 20),
+                      color: _containerColor,
+                      padding: EdgeInsets.only(top: femm / 70),
+                      
+                      child: Column(
+                        children: [
+                          Container(
+                            height: femm / 11,
+                            //width: 50,
+                            //margin: EdgeInsets.only(top: 30),
+                            //width: 15.0,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage('assets/Upload.png'),
+                              ),
                             ),
                           ),
-                        ),
-                        Container(
-                          height: femm / 20,
-                          margin: EdgeInsets.only(top: femm / 150),
-                          child: Text(
-                            'New Dilemma',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: femm / 40,
-                              //fontWeight: FontWeight.bold,
+                          Container(
+                            height: femm / 20,
+                            margin: EdgeInsets.only(top: femm / 150),
+                            child: Text(
+                              'New Dilemma',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: femm / 40,
+                                //fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ))
+                        ],
+                      ))
+                  )
               ])),
           Container(
               alignment: Alignment.topLeft,

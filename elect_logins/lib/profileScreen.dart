@@ -5,11 +5,11 @@ import 'uploadPost.dart';
 import 'resolvePost.dart';
 import 'postsFeed.dart';
 import 'settings.dart';
+import 'log_inScreen.dart';
 
 Color _containerColorUpload = Color(0xff25232a);
 Color _containerColorResolve = Color(0xff25232a);
 Color _containerColorFollowers = Color(0xff25232a);
-
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -32,26 +32,36 @@ class _ProfileState extends State<Profile> {
         backgroundColor: Color(0xff1c1b1f),
         appBar: AppBar(
           title: Center(
-            child: GestureDetector(
-              onTap: () {
-                Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => Feed()));
-              },
-              child: Image.asset('electlogo2.png',
-              width: double.infinity,
-              height: femm / 20,),
-            )
+              child: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/electlogo2.png'),
+                //fit: BoxFit.cover,
+              ),
+            ),
+            width: double.infinity,
+            height: 40,
+          )),
+          leading: IconButton(
+            icon: Icon(Icons.bungalow_outlined),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Feed()),
+              );
+            },
           ),
+          //)
+
           backgroundColor: Color(0xff1c1b1f),
           elevation: 4.0,
           actions: <Widget>[
             IconButton(
-              icon: Icon(Icons.settings),
-              onPressed: () {
-              Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => Settings()));
-            }
-            ),
+                icon: Icon(Icons.settings),
+                onPressed: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => Settings()));
+                }),
           ],
         ),
         body: Column(children: [
@@ -132,7 +142,8 @@ class _ProfileState extends State<Profile> {
                           onTapDown: (_) {
                             // Change the color of the container when the user taps down
                             setState(() {
-                              _containerColorFollowers = Color.fromARGB(255, 66, 62, 74);
+                              _containerColorFollowers =
+                                  Color.fromARGB(255, 66, 62, 74);
                             });
                           },
                           onTapUp: (_) {
@@ -186,50 +197,50 @@ class _ProfileState extends State<Profile> {
               margin: EdgeInsets.only(right: 10, left: 10),
               child: Row(children: [
                 GestureDetector(
-                  onTapDown: (_) {
-                    // Change the color of the container when the user taps down
-                    setState(() {
-                      _containerColorResolve = Color.fromARGB(255, 66, 62, 74);
-                    });
-                  },
-                  onTapUp: (_) {
-                    // Change the color of the container back when the user lifts their finger
-                    setState(() {
-                      _containerColorResolve = Color(0xff25232a);
-                    });
-                    Navigator.pop(context);
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => resolvePost()));
-                  },
-                  child: Container(
-                    width: MediaQuery.of(context).size.width / 2 - 20.0,
-                    color: _containerColorResolve,
-                    padding: EdgeInsets.only(top: femm / 70),
-                    child: Column(
-                      children: [
-                        Container(
-                          height: femm / 11,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage('assets/dilemmaUpload.jpg'),
+                    onTapDown: (_) {
+                      // Change the color of the container when the user taps down
+                      setState(() {
+                        _containerColorResolve =
+                            Color.fromARGB(255, 66, 62, 74);
+                      });
+                    },
+                    onTapUp: (_) {
+                      // Change the color of the container back when the user lifts their finger
+                      setState(() {
+                        _containerColorResolve = Color(0xff25232a);
+                      });
+                      Navigator.pop(context);
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => resolvePost()));
+                    },
+                    child: Container(
+                        width: MediaQuery.of(context).size.width / 2 - 20.0,
+                        color: _containerColorResolve,
+                        padding: EdgeInsets.only(top: femm / 70),
+                        child: Column(
+                          children: [
+                            Container(
+                              height: femm / 11,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage('assets/dilemmaUpload.jpg'),
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                        Container(
-                          height: femm / 20,
-                          margin: EdgeInsets.only(top: femm / 150),
-                          child: Text(
-                            'Add Resolution',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: femm / 40,
+                            Container(
+                              height: femm / 20,
+                              margin: EdgeInsets.only(top: femm / 150),
+                              child: Text(
+                                'Add Resolution',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: femm / 40,
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                      ],
-                    ))
-                  ),
-                  GestureDetector(
+                          ],
+                        ))),
+                GestureDetector(
                     onTapDown: (_) {
                       // Change the color of the container when the user taps down
                       setState(() {
@@ -246,39 +257,37 @@ class _ProfileState extends State<Profile> {
                           builder: (context) => uploadPost()));
                     },
                     child: Container(
-                      width: MediaQuery.of(context).size.width / 2 - 20.0,
-                      margin: EdgeInsets.only(left: 20),
-                      color: _containerColorUpload,
-                      padding: EdgeInsets.only(top: femm / 70),
-                      
-                      child: Column(
-                        children: [
-                          Container(
-                            height: femm / 11,
-                            //width: 50,
-                            //margin: EdgeInsets.only(top: 30),
-                            //width: 15.0,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: AssetImage('assets/Upload.png'),
+                        width: MediaQuery.of(context).size.width / 2 - 20.0,
+                        margin: EdgeInsets.only(left: 20),
+                        color: _containerColorUpload,
+                        padding: EdgeInsets.only(top: femm / 70),
+                        child: Column(
+                          children: [
+                            Container(
+                              height: femm / 11,
+                              //width: 50,
+                              //margin: EdgeInsets.only(top: 30),
+                              //width: 15.0,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage('assets/Upload.png'),
+                                ),
                               ),
                             ),
-                          ),
-                          Container(
-                            height: femm / 20,
-                            margin: EdgeInsets.only(top: femm / 150),
-                            child: Text(
-                              'New Dilemma',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: femm / 40,
-                                //fontWeight: FontWeight.bold,
+                            Container(
+                              height: femm / 20,
+                              margin: EdgeInsets.only(top: femm / 150),
+                              child: Text(
+                                'New Dilemma',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: femm / 40,
+                                  //fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
-                      ))
-                  )
+                          ],
+                        )))
               ])),
           Container(
               alignment: Alignment.topLeft,
